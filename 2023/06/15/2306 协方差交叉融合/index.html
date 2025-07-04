@@ -24,12 +24,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="协方差交叉融合">
 <meta property="og:url" content="http://example.com/2023/06/15/2306%20%E5%8D%8F%E6%96%B9%E5%B7%AE%E4%BA%A4%E5%8F%89%E8%9E%8D%E5%90%88/index.html">
-<meta property="og:site_name" content="个人站">
+<meta property="og:site_name" content="少鹏的个人站">
 <meta property="og:description" content="目标 对两个估计值进行融合，要求融合后的协方差矩阵一定程度上最优，比如 最小(代表估计方差最小，估计最准确)。 一般情况下 已知， 不确定。 \begin{gather} \hat X&#x3D;K_1\hat X_1+K_2\hat X_2\quad\quad K_1+K_2&#x3D;I\\\\ 定义：P&#x3D;\begin{bmatrix}P_{11} &amp; P_{12}\\P_{21} &amp; P_{22}\end{bm">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/Pasted%20image%2020230614232559.png">
 <meta property="article:published_time" content="2023-06-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-14T16:18:46.450Z">
+<meta property="article:modified_time" content="2025-07-04T15:31:49.459Z">
 <meta property="article:author" content="shaoPeng">
 <meta property="article:tag" content="DIY、控制、软件优化、状态估计">
 <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>协方差交叉融合 | 个人站</title>
+  <title>协方差交叉融合 | 少鹏的个人站</title>
   
 
 
@@ -79,7 +79,11 @@
   </style>
 </noscript>
 
-<style>mjx-container[jax="SVG"] {
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -211,7 +215,7 @@ mjx-container[display="true"] + br {
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">个人站</h1>
+      <h1 class="site-title">少鹏的个人站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
       <p class="site-subtitle" itemprop="description">DIY、控制、软件优化、状态估计</p>
@@ -231,11 +235,6 @@ mjx-container[display="true"] + br {
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -292,7 +291,7 @@ mjx-container[display="true"] + br {
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="个人站">
+      <meta itemprop="name" content="少鹏的个人站">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -327,7 +326,7 @@ mjx-container[display="true"] + br {
 \hat X=K_1\hat X_1+K_2\hat X_2\quad\quad K_1+K_2=I\\\\
 定义：P=\begin{bmatrix}P_{11} & P_{12}\\P_{21} & P_{22}\end{bmatrix} \quad\quad
 K=\begin{bmatrix}K_1\\K_2\end{bmatrix}\\\\
-\hat P=K^T{PK}\quad\Rightarrow \color{red}{融合后的协方差矩阵}\\
+\hat P=K^T{PK}\quad\Rightarrow 融合后的协方差矩阵\\
 \end{gather}</script></li>
 </ul>
 <h4 id="1-协方差已知且为0"><a href="#1-协方差已知且为0" class="headerlink" title="1. 协方差已知且为0"></a>1. 协方差已知且为0</h4><p>直接带入卡尔曼滤波公式，或者加权最小二乘公式可得最优增益<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></g></g></g></svg></mjx-container>和<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.699ex" height="2.378ex" role="img" focusable="false" viewBox="0 -1051 751 1051"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mover"><g data-mml-node="mi"><path data-c="1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path></g><g data-mml-node="mo" transform="translate(486,257) translate(-250 0)"><path data-c="5E" d="M112 560L249 694L257 686Q387 562 387 560L361 531Q359 532 303 581L250 627L195 580Q182 569 169 557T148 538L140 532Q138 530 125 546L112 560Z"></path></g></g></g></g></g></svg></mjx-container>。</p>
@@ -481,7 +480,7 @@ K_1&=w\hat PP_{11}^{-1} \\ K_2&=(1-w)\hat PP_{22}^{-1}
 <div class="copyright">
   
   &copy; 2023 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
